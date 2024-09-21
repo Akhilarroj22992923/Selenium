@@ -1,82 +1,64 @@
-# Selenium Automation Script README
+# PDF Downloader Using Selenium
 
-This project is a Python automation script using Selenium to interact with the web page of the company "INDIGO" on the website "Screener.in". The script navigates to the page, waits for it to load, clicks the "All" button, and verifies the successful loading of the page content.
+This script automates the process of downloading PDF files from a specified webpage using Selenium WebDriver. It specifically targets the "All" button on the Screener.in website for the Indigo company, retrieves links from a BSE page, and downloads the associated PDF files.
 
 ## Prerequisites
 
-1. **Python 3.x** installed on your system.
-2. **Google Chrome** installed.
-3. **ChromeDriver** that matches the installed version of Google Chrome.
+Before running the script, ensure you have the following installed:
 
-## Installation Instructions
+- Python 3.x
+- Selenium package
+- Chrome browser
+- ChromeDriver (matching your Chrome version)
 
-### Step 1: Install Selenium
-Before running the script, install Selenium by executing the following command in your terminal:
+### Installation
 
-```bash
-pip install selenium
-```
+1. **Install Selenium:**
+   ```bash
+   pip install selenium
+   ```
 
-### Step 2: Set up ChromeDriver
-Ensure that the `ChromeDriver` executable is available in your system's PATH or placed in the project directory.
+2. **Download ChromeDriver:**
+   Download the appropriate version of ChromeDriver from [here](https://chromedriver.chromium.org/downloads) and place it in a known directory.
 
-You can download the appropriate version of ChromeDriver for your system from the following link:  
-[ChromeDriver - WebDriver for Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+## Configuration
 
-Ensure the downloaded `ChromeDriver` version matches your installed Chrome browser version.
+1. **Set Up ChromeDriver Path:**
+   Update the `chrome_driver_path` variable in the script to point to your ChromeDriver executable location.
 
-### Step 3: Clone the Repository
+   ```python
+   chrome_driver_path = r"C:\path\to\chromedriver.exe"
+   ```
 
-Clone or download the code into your local machine:
+2. **Set Up Download Directory:**
+   The script will download PDFs to the specified `download_dir`. Update this path if needed.
 
-```bash
-git clone <repository_url>
-cd <repository_directory>
-```
+   ```python
+   download_dir = r"C:\path\to\download\directory"
+   ```
 
-### Step 4: Run the Script
+## Usage
 
-Open a terminal in the project directory and execute the Python script:
+1. **Run the Script:**
+   Execute the script using Python. Open your command line interface and run:
+   ```bash
+   python your_script_name.py
+   ```
 
-```bash
-python auto.py
-```
+2. **Functionality:**
+   - The script opens the specified URL (`https://www.screener.in/company/INDIGO/`).
+   - It clicks on the "All" button to navigate to the BSE announcements page.
+   - It extracts links to PDF files listed on the page.
+   - For each PDF link, it opens the link and clicks on the `cr-icon` to trigger the download.
 
-This script will:
-1. Open a Chrome browser window.
-2. Navigate to the page for the company **INDIGO** on Screener.in.
-3. Wait for the page to load and locate the **"All"** button.
-4. Click the **"All"** button and wait for the page to load fully.
-5. Close the browser.
+## Error Handling
 
-### Script Explanation
-
-1. **Dependencies**:  
-   The script imports the following modules:
-   - `os`: For potential OS-level operations.
-   - `requests`: (Not used, can be removed unless required for future additions).
-   - `selenium.webdriver`: For automating the Chrome browser.
-   - `selenium.webdriver.support.ui.WebDriverWait`: For handling waiting conditions.
-   - `selenium.webdriver.support.expected_conditions`: To manage conditions while waiting for elements to load.
-
-2. **Browser Automation**:  
-   - **Step 1**: The script opens Chrome using `webdriver.Chrome()` and navigates to the company page on Screener.in.
-   - **Step 2**: It waits for the **"All"** button to appear on the page.
-   - **Step 3**: After clicking the "All" button, it waits for the page to finish loading.
-   - **Final Step**: The browser is closed and the script terminates.
-
-## Troubleshooting
-
-1. **ChromeDriver version mismatch**: Ensure that your ChromeDriver version matches your Chrome browser version. If there is a version mismatch, you will encounter errors.
-   
-2. **Timeout errors**: If the page does not load within the timeout period of 20 seconds, the script will throw an error. You can increase the wait time by modifying the `WebDriverWait` in the script.
-
-3. **Script fails to find elements**: If the website's structure changes (e.g., the **"All"** button is removed or renamed), the script might fail. Ensure the element exists with the correct name or update the code accordingly.
+The script includes basic error handling. If the `cr-icon` cannot be found or clicked, an error message will be printed to the console.
 
 ## Notes
 
-- Ensure your internet connection is stable to avoid timeouts.
-- This script can be extended by adding more functionality, such as scraping data or automating further interactions with the web page.
+- Ensure that the webpage structure does not change, as this may require updating the element selectors in the script.
+- Be aware of the site's terms of use regarding automated downloads.
 
 ## License
 
